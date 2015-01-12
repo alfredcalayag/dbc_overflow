@@ -40,8 +40,8 @@ gem 'spring',        group: :development
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
+  gem 'shoulda-matchers'
+  gem 'factory_girl'
 end
 
-gem 'capybara'
-gem 'shoulda-matchers'
-gem 'factory_girl'
