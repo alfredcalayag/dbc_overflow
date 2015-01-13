@@ -1,22 +1,25 @@
 require 'rails_helper'
 
-RSpec.describe Question, :type => :model do
-  context "Question Model contains the necessary attributes" do
-    before :each do
-      @question = Question.create(title: "My Title", content: "My Content", user_id: 1)
+describe Question, :type => :model do
+  context "Validation" do
+
+    it "has a valid factory" do
+      expect( build(:question) ).to be_valid
+
     end
 
-    it "Has a title attribute" do
-      expect(@question.title).to eq("My Title")
+    it "is valid when title, content, and user_id are present" do
+      expect(build(:question)).to be_valid
     end
 
-    it "Has a content attribute" do
-      expect(@question.content).to eq("My Content")
+    it "is invalid without a title" do
+      question = build(:question, title: nil)
+      p question.valid?
+      # p question.errors
+      expect(question.errors[:title]).to include("can't be blank")
     end
 
-    it "Has an associated user_id" do
-      expect(@question.user_id).to eq(1)
-    end
+
 
   end
 
