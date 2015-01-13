@@ -1,4 +1,3 @@
-
 FactoryGirl.define do
   factory :question do
     title "My Title"
