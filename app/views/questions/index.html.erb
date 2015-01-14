@@ -1,16 +1,24 @@
 <h1>All Questions</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Content</th>
-  </tr>
+<% @questions.each do |question|%>
+  <p><%= question.title %></p><br>
+  <p><%= question.content %></p>
+<% end %>
 
-  <% @questions.each do |question| %>
-  <tr>
-    <td><%= question.title %></td>
-    <td><%= question.content %></td>
-  </tr>
-  <% end %>
-</table>
 
+<h2>Create a new question</h2>
+<%= form_for :question, url: questions_path do |f| %>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title, :placeholder => "title" %>
+  </p><br>
+
+  <p>
+    <%= f.label :content %>
+    <%= f.text_field :content, :placeholder => "content" %>
+  </p>
+
+  <p>
+  <%= f.submit "Create" %>
+  </p>
+<% end %>
