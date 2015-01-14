@@ -1,1 +1,25 @@
-<h1>This is my show</h1>
+<h1>Single Question Page</h1>
+<h1>Question:</h1><h2><%= @question.title %></h2>
+<p><%= @question.content %></p>
+
+<% if @question.answers %>
+  <h1>Answers:</h1>
+  <% @question.answers.each do |answer| %>
+  <%= answer.content %><br>
+  <% end %>
+<% else %>
+  <h2>This question has not been answered.</h2>
+<% end %>
+
+
+<h2>Answer this question:</h2>
+<%= form_for( [@question, @question.answers.build] ) do |f| %>
+  <p>
+    <%= f.label :content %>
+    <%= f.text_area :content, :placeholder => "content" %>
+  </p>
+
+  <p>
+  <%= f.submit "Submit Answer" %>
+  </p>
+<% end %>
