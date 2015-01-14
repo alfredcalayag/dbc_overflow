@@ -67,18 +67,25 @@ describe QuestionsController do
   describe "PATCH question#update" do
     it "changes the question's content" do
       question = create(:question)
-      patch :update, id: question
-      new_content = Faker::Lorem.sentence
-      question.content = new_content
-      question.save
+      new_content = "banana"
+      patch :update, id: question, question: {title: question.title, content: new_content}
+      question.reload
 
-      expect(@question.content).to eq(new_content)
+      expect(question.content).to eq(new_content)
     end
 
-    it "redirects to the question show template" do
+    it "redirects to the question show template if information is valid" do
       question = create(:question)
-      patch :update, id: question
-      expect(response).to redirect_to :show, id: question
+      patch :update, id: question, question: attributes_for(:question)
+
+      expect(response).to redirect_to question
+    end
+
+    it "redirects to the edit template if information is not valid" do
+      question = create(:question)
+      patch :update, id: question, question: attributes_for(:question, content: nil)
+
+      expect(response).to redirect_to :edit
     end
   end
 
