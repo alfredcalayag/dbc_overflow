@@ -1,7 +1,9 @@
+require 'faker'
+
 FactoryGirl.define do
   factory :question do
-    title "My Title"
-    content "My content"
-    user_id 1
+    sequence(:title) { |n| "Title #{n}" }
+    content { Faker::Lorem.sentence }
+    sequence(:user_id) {|n| n }
   end
 end

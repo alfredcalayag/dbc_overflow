@@ -8,7 +8,7 @@
 require 'rails_helper'
 
 describe "questions/index.html.erb", :js => true do
-  let!(:question) { create(:question) }
+  let!(:question) { FactoryGirl.create(:question) }
   before (:each) do
     visit root_path
   end
@@ -23,7 +23,7 @@ describe "questions/index.html.erb", :js => true do
     fill_in "content", :with => question[:content]
 
     click_on "Create"
-    expect(page).to have_content question[:title]
+    expect(page).to have_content question[:content]
   end
 
 end
