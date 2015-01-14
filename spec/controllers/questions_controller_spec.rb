@@ -74,18 +74,18 @@ describe QuestionsController do
       expect(question.content).to eq(new_content)
     end
 
-    it "redirects to the question show template if information is valid" do
+    it "re-directs to the question show template if information is valid" do
       question = create(:question)
       patch :update, id: question, question: attributes_for(:question)
 
       expect(response).to redirect_to question
     end
 
-    it "redirects to the edit template if information is not valid" do
+    it "re-renders the edit page if information is not valid" do
       question = create(:question)
       patch :update, id: question, question: attributes_for(:question, content: nil)
 
-      expect(response).to redirect_to :edit
+      expect(response).to render_template :edit
     end
   end
 
