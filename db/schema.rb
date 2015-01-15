@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150115230242) do
+ActiveRecord::Schema.define(version: 20150115232333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 20150115230242) do
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
+  create_table "downvotes", force: true do |t|
+    t.integer "question_id"
+    t.integer "user_id"
+  end
+
+  add_index "downvotes", ["question_id"], name: "index_downvotes_on_question_id", using: :btree
+  add_index "downvotes", ["user_id"], name: "index_downvotes_on_user_id", using: :btree
+
   create_table "questions", force: true do |t|
     t.string   "title"
     t.string   "content"
@@ -34,8 +42,10 @@ ActiveRecord::Schema.define(version: 20150115230242) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "upvote_id"
+    t.integer  "downvote_id"
   end
 
+  add_index "questions", ["downvote_id"], name: "index_questions_on_downvote_id", using: :btree
   add_index "questions", ["upvote_id"], name: "index_questions_on_upvote_id", using: :btree
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
