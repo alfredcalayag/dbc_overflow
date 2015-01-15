@@ -2,7 +2,24 @@ require 'rails_helper'
 
 describe QuestionsController do
 
-  context "POST #create"
+  context "POST #create" do
+    it "saves a new question in the database if valid" do
+      expect {
+        post :create, question: attributes_for(:question)
+        }.to change(Question, :count).by(1)
+    end
+
+    it "does not save if invalid" do
+      expect {
+        post :create, question: attributes_for(:question, title: nil)
+      }.to_not change(Question, :count)
+    end
+
+    it "re-directs to the #index page on a successful save" do
+      post :create, question: attributes_for(:question)
+      expect(response).to redirect_to assigns(:question)
+    end
+  end
 
   context "GET #index" do
       it "assigns @questions to Question.all" do

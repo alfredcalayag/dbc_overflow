@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.save
-    redirect_to root_path
+    redirect_to @question
   end
 
   def show
