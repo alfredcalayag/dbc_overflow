@@ -1,9 +1,16 @@
 <h1>All Questions</h1>
 
+
 <% @questions.each do |question|%>
   <div>
-    <h4><%= question.title %></h4>
-    <p><%= question.content %></p><br>
+    <table>
+    <tr>
+      <td><h4><%= question.title %></h4></td>
+<!--       <td><p><%= question.content %></p></td> -->
+      <td><%= link_to 'Show', question_path(question) %></td>
+      <td><%= link_to 'Edit', edit_question_path(question) %></td>
+    </tr>
+  </table>
   </div>
 <% end %>
 

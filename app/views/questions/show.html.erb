@@ -1,7 +1,10 @@
+<%= link_to 'Back to home', questions_path %> |
+<%= link_to 'Edit this question', edit_question_path(@question) %>
+
 <h2>Question: <%= @question.title %></h2>
 <h3><%= @question.content %></h3>
 
-<% if @question.answers %>
+<% if @question.answers.count > 0 %>
   <h3>Answers:</h3>
   <% @question.answers.each do |answer| %>
     <div>
@@ -13,15 +16,20 @@
 <% end %>
 
 <div>
-<h2>Answer this question:</h2>
-<%= form_for( [@question, @question.answers.build] ) do |f| %>
-  <p>
-    <%= f.label :content %>
-    <%= f.text_area :content, :placeholder => "content" %>
-  </p>
+  <% if @question.answers.count > 0 %>
+    <h2>Answer this question:</h2>
+  <% else %>
+    <h2>Be the first to answer this question!</h2>
+  <% end %>
 
-  <p>
-  <%= f.submit "Submit Answer" %>
-  </p>
-<% end %>
+    <%= form_for( [@question, @question.answers.build] ) do |f| %>
+      <p>
+        <%= f.label :content %>
+        <%= f.text_area :content, :placeholder => "content" %>
+      </p>
+
+      <p>
+      <%= f.submit "Submit Answer" %>
+      </p>
+    <% end %>
 </div>

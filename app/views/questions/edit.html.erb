@@ -1,5 +1,24 @@
 <!-- edit.html.erb -->
-<h1>Edit your question.. eventually</h1>
+<%= link_to 'Back to home', questions_path %> | <%= link_to 'Back to question', question_path(@question) %>
 
-<%= @question.title %>
-<%= @question.content %>
+<h3>Edit your question</h3>
+
+<%= form_for :question, url: question_path(@question) do |f| %>
+  <div class="field">
+    <p>
+      <%= f.label :title %>
+      <%= f.text_area :title, :placeholder => "title", :value =>
+      @question.title %>
+    </p>
+
+    <p>
+      <%= f.label :content %>
+      <%= f.text_area :content, :placeholder => "content", :value => @question.content %>
+    </p>
+
+    <p>
+    <%= f.submit "Confirm Edit" %>
+    </p>
+
+  <% end %>
+  </div>
