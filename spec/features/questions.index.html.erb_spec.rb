@@ -8,7 +8,7 @@
 require 'rails_helper'
 
 describe "questions/index.html.erb", :js => true do
-  let!(:question) { FactoryGirl.create(:question) }
+  let!(:question) { create(:question) }
   before (:each) do
     visit root_path
   end
@@ -18,7 +18,7 @@ describe "questions/index.html.erb", :js => true do
   end
 
   it "can create a new question" do
-    question = FactoryGirl.attributes_for :question
+    question = attributes_for :question
     fill_in "title", :with => question[:title]
     fill_in "content", :with => question[:content]
 

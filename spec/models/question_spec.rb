@@ -5,7 +5,6 @@ describe Question, :type => :model do
 
     it "has a valid factory" do
       expect( build(:question) ).to be_valid
-
     end
 
     it "is valid when title, content, and user_id are present" do

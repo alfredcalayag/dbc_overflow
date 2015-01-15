@@ -24,7 +24,7 @@ describe "questions/show.html.erb", :js => true do
   end
 
   it "can create a new answer" do
-    answer = FactoryGirl.attributes_for :answer
+    answer = attributes_for :answer
     fill_in "content", :with => answer[:content]
     click_on "Submit Answer"
 
