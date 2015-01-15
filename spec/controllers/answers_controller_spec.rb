@@ -31,9 +31,20 @@ describe AnswersController do
       expect {
         post :create, answer: {content: nil, question_id: question.id}, question_id: question.id
       }.to_not change(Question.last.answers, :count)
+
     end
 
-    it "renders the answer page if invalid"
+    # TODO: Currently not implemented.
+    # it "renders the question page without saving if invalid" do
+    #   question = create(:question)
+    #   post :create, answer: {content: nil, question_id: question.id}, question_id: question.id
+
+    #   # expect(assigns(:question)).to eq(question)
+    #   # expect(response).to render_template
+    #   # expect(page).to
+    #   # question_path['id'] = question.id
+    #   expect(response).to render_template :question
+    # end
 
   end
 end
