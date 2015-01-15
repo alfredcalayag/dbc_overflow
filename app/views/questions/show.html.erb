@@ -1,17 +1,18 @@
-<h1>Single Question Page</h1>
-<h1>Question:</h1><h2><%= @question.title %></h2>
-<p><%= @question.content %></p>
+<h2>Question: <%= @question.title %></h2>
+<h3><%= @question.content %></h3>
 
 <% if @question.answers %>
-  <h1>Answers:</h1>
+  <h3>Answers:</h3>
   <% @question.answers.each do |answer| %>
-  <%= answer.content %><br>
+    <div>
+      <p><%= answer.content %></p>
+    <div>
   <% end %>
 <% else %>
   <h2>This question has not been answered.</h2>
 <% end %>
 
-
+<div>
 <h2>Answer this question:</h2>
 <%= form_for( [@question, @question.answers.build] ) do |f| %>
   <p>
@@ -23,3 +24,4 @@
   <%= f.submit "Submit Answer" %>
   </p>
 <% end %>
+</div>

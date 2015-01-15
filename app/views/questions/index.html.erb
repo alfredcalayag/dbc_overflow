@@ -1,24 +1,30 @@
 <h1>All Questions</h1>
 
 <% @questions.each do |question|%>
-  <p><%= question.title %></p>
-  <p><%= question.content %></p><br>
+  <div>
+    <h4><%= question.title %></h4>
+    <p><%= question.content %></p><br>
+  </div>
 <% end %>
 
 
-<h2>Create a new question</h2>
+<h3>Create a new question</h3>
 <%= form_for :question, url: questions_path do |f| %>
-  <p>
-    <%= f.label :title %>
-    <%= f.text_field :title, :placeholder => "title" %>
-  </p><br>
+  <div>
+    <p>
+      <%= f.label :title %>
+      <%= f.text_field :title, :placeholder => "title" %>
+    </p>
 
-  <p>
-    <%= f.label :content %>
-    <%= f.text_field :content, :placeholder => "content" %>
-  </p>
+    <p>
+      <%= f.label :content %>
+      <%= f.text_field :content, :placeholder => "content" %>
+    </p>
 
-  <p>
-  <%= f.submit "Create" %>
-  </p>
+    <p>
+    <%= f.submit "Create" %>
+    </p>
+
+  </div>
+
 <% end %>
