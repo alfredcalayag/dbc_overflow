@@ -6,6 +6,7 @@
 
 <h2>Question: <%= @question.title %></h2>
 <h3><%= @question.content %></h3>
+<%= link_to 'Upvote', question_upvotes_path(@question), method: :post %> : <%= @question.upvotes.count %>
 
 <% if @question.answers.count > 0 %>
   <h3>Answers:</h3>
